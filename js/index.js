@@ -362,10 +362,10 @@
                 type: 'line',
                 stack: 'Total',
                 areaStyle: {
-                    color:new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                         { offset: 0, color: 'rgba(1, 132, 213, 0.9)' }, // 渐变起始颜色
                         { offset: 0.8, color: 'rgba(1, 132, 213, 0.1)' }, // 渐变结束颜色 
-                ],false),
+                    ], false),
                     shadowColor: 'rgba(0, 0, 0, 0.1)' // 阴影颜色
                 },
                 lineStyle: {
@@ -391,10 +391,10 @@
                 type: 'line',
                 stack: 'Total',
                 areaStyle: {
-                    color:new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                         { offset: 0, color: 'rgba(0, 216, 135, 0.5)' }, // 渐变起始颜色
                         { offset: 0.8, color: 'rgba(0, 216, 135, 0.1)' }, // 渐变结束颜色 
-                ],false),
+                    ], false),
                     shadowColor: 'rgba(0, 0, 0, 0.1)' // 阴影颜色
                 },
                 lineStyle: {
@@ -426,59 +426,121 @@
     });
 })();
 // 饼图模块一
-(function(){
-//1.实例化对象
+(function () {
+    //1.实例化对象
     var myChart = echarts.init(document.querySelector('.pie .chart'));
-//2.指定配置和数据
-option = {
-  tooltip: {
-    trigger: 'item'
-  },
-  legend: {
-    bottom: '5%',
-    itemWidth: 10,
-    itemHeight: 10,
-    textStyle: {
-      color: 'rgba(255, 255, 255, .5)',
-      fontSize: '12'
-    }
-  },
-  series: [
-    {
-      name: 'Access From',
-      type: 'pie',
-      radius: ['40%', '60%'],
-      avoidLabelOverlap: false,
-      label: {
-        show: false,
-        position: 'center'
-      },
-      emphasis: {
-        label: {
-          show: true,
-          fontSize: 40,
-          fontWeight: 'bold'
-        }
-      },
-      labelLine: {
-        show: false
-      },
-      data: [
-        { value: 1048, name: 'Search Engine' },
-        { value: 735, name: 'Direct' },
-        { value: 580, name: 'Email' },
-        { value: 484, name: 'Union Ads' },
-        { value: 300, name: 'Video Ads' }
-      ]
-    }
-  ]
-};
-//3.使用配置和数据
-myChart.setOption(option);
-//4.让图表跟随屏幕自适应
-window.addEventListener('resize', function () {
+    //2.指定配置和数据
+    option = {
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        color: ['#006cff', '#60cda0', '#ed8884', '#ff9f7f', '#0096ff'],
+        legend: {
+            bottom: '5%',
+            itemWidth: 10,
+            itemHeight: 10,
+            textStyle: {
+                color: 'rgba(255, 255, 255, .5)',
+                fontSize: '12'
+            }
+        },
+        series: [
+            {
+                name: '年龄分布',
+                type: 'pie',
+                radius: ['40%', '60%'],
+                center: ['50%', '40%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: 40,
+                        fontWeight: 'bold',
+                        position: 'center',
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    { value: 1, name: '0岁以下' },
+                    { value: 4, name: '20-29岁' },
+                    { value: 2, name: '30-39岁' },
+                    { value: 2, name: '40-49岁' },
+                    { value: 1, name: '50岁以上' }
+                ]
+            }
+        ]
+    };
+    //3.使用配置和数据
+    myChart.setOption(option);
+    //4.让图表跟随屏幕自适应
+    window.addEventListener('resize', function () {
         myChart.resize();
     });
 
 
+})();
+// 饼图模块二
+(function () {
+    //1.实例化对象
+    var myChart = echarts.init(document.querySelector('.pie2 .chart'));
+    //2.指定配置和数据
+    option = {
+        color: ['#006cff', '#60cda0', '#ed8884', '#ff9f7f', '#0096ff'],
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        legend: {
+                    bottom: '0%',
+                    itemHeight: 8,
+                    itemWidth: 8,
+                    textStyle: {
+                        color: 'rgba(255, 255, 255, .5)',
+                        fontSize: '12'
+                    }
+                },
+
+        series: [
+            {
+                name: '地区分布',
+                type: 'pie',
+                radius: ['10%', '70%'],
+                center: ['50%', '50%'],
+                roseType: 'radius',
+                label: {
+                    fontSize: 10,
+                },
+                labelLine: {
+                    length: 6,
+                    length2: 8,
+                    lineStyle: {
+                        width: 1
+                    }
+                },
+                data: [
+                    { value: 20, name: '北京' },
+                    { value: 26, name: '天津' },
+                    { value: 24, name: '山东' },
+                    { value: 25, name: '浙江' },
+                    { value: 20, name: '云南' },
+                    { value: 25, name: '四川' },
+                    { value: 30, name: '河北' },
+                    { value: 42, name: '河南' }
+                ]
+            }
+        ]
+    };
+    //3.使用配置和数据
+    myChart.setOption(option);
+    //4.让图表跟随屏幕自适应
+    window.addEventListener('resize', function () {
+        myChart.resize();
+    });
 })();
